@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven { url 'https://maven.fabric.io/public' }
+        maven {
+            url 'https://repo.spring.io/plugins-release/'
+        }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.31.2'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId 'com.samsen.tunyaporn.pod'
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 2
+        versionName '2.0'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.vkondrav.swiftadapter:swift-adapter:0.2.1'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.github.bumptech.glide:glide:4.0.0-RC0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
+}
